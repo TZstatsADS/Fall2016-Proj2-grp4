@@ -1,40 +1,51 @@
+# a sample of our project
 library(shiny)
+library(leaflet)
+library(dplyr)
+library(shinythemes)
+library(DT)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("2009 Manhattan Housing Sales"),
-  
-  # Sidebar with a selector input for neighborhood
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("nbhd", label = h5("Choose a Manhattan Neighborhood"), 
-                         choices = list("all neighborhoods"=0,
-                                        "Central Harlem"=1, 
-                                        "Chelsea and Clinton"=2,
-                                        "East Harlem"=3, 
-                                        "Gramercy Park and Murray Hill"=4,
-                                        "Greenwich Village and Soho"=5, 
-                                        "Lower Manhattan"=6,
-                                        "Lower East Side"=7, 
-                                        "Upper East Side"=8, 
-                                        "Upper West Side"=9,
-                                        "Inwood and Washington Heights"=10), 
-                         selected = 0)
-      #sliderInput("p.range", label=h3("Price Range (in thousands of dollars)"),
-      #            min = 0, max = 20000, value = c(200, 10000))
-    ),
-    # Show two panels
-    mainPanel(
-      #h4(textOutput("text")),
-      h3(code(textOutput("text1"))),
-      tabsetPanel(
-        # Panel 1 has three summary plots of sales. 
-        tabPanel("Sales summary", plotOutput("distPlot")), 
-        # Panel 2 has a map display of sales' distribution
-        tabPanel("Sales map", plotOutput("distPlot1")))
-    )
- )
-))
-
+shinyUI(navbarPage(theme=shinytheme("Readable"),"Parking Violation",
+                   tabPanel("Map",
+                            sidebarLayout(
+                              sidebarPanel(
+                                radioButtons("numVio","Number of Violations to show",
+                                             c("2500","5000","10000",
+                                               "50000","100000","None")),
+                                selectInput("month","Month to show",
+                                            c("Jan","Feb","Mar","Apr","May","Jun",
+                                              "Jul","Aug","Sept","Oct","Nov","Dec"))
+                              ),
+                              mainPanel(
+                                leafletOutput("nycMap")
+                              )
+                            )
+                   ),
+                   tabPanel("Check",
+                            sidebarLayout(
+                              sidebarPanel(
+                                textInput("plate","Enter the Plate ID","98255MB")
+                              ),
+                              mainPanel(
+                                tableOutput("violation")
+                              )
+                            )
+                            
+                     
+                   ),
+                   navbarMenu("More",
+                              tabPanel("Data Analysis"
+                                       
+                              ),
+                              tabPanel("Contact",
+                                       navlistPanel("Team Members",
+                                                    tabPanel("Yanjin Li",textOutput("li")),
+                                                    tabPanel("Tian Sheng",textOutput("sheng")),
+                                                    tabPanel("Pengfei Wang",textOutput("wang")),
+                                                    tabPanel("Qing Yin",textOutput("yin"))
+                                       )
+                                      
+                              )
+                   )
+         )
+)
