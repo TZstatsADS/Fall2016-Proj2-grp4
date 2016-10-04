@@ -90,9 +90,9 @@ dat.pv.cp <- dat.pv.cp %>% mutate(Street.Name.cp = trimws(Street.Name.cp))
 dat.pv.cp <- dat.pv.cp %>% 
   mutate(Street.Name.cp = gsub(" |  |   |    |     ", "_", Street.Name.cp))
 # 3.8 Make into Corpus 
-docs <- Corpus(VectorSource(dat.pv.cp$Street.Name.cp))
+#docs <- Corpus(VectorSource(dat.pv.cp$Street.Name.cp))
 
-# 3.6 Count Street Name Frequency 
+# 3.8 Count Street Name Frequency 
 detach("package:plyr", unload=TRUE) 
 library(dplyr)
 freq.streetname <- dat.pv.cp %>% 
@@ -101,8 +101,11 @@ freq.streetname <- dat.pv.cp %>%
   summarise(count = n()) %>%
   arrange(desc(count))
 
-# 3.7 Make "_" Back to " "
+# 3.9 Make "_" Back to " "
 freq.streetname <- freq.streetname %>% 
   mutate(Street.Name.cp = gsub("_", " ", Street.Name.cp))
 
+# 3.10 Save to local 
+write.csv(freq.streetname, "exported_data/freq_streetname.csv")
+saveRDS(freq.streetname, "exported_data/freq_streetname.rds")
 
