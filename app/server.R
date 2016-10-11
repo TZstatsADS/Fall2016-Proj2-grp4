@@ -6,6 +6,7 @@ library(sp)
 library(jsonlite)
 library(openxlsx)
 library(rPython)
+library(googleway)
 
 res1<-readOGR(dsn='pre_instance.geojson',layer="OGRGeoJSON")
 business<-read.xlsx("business_parking_lot.xlsx")
@@ -22,7 +23,7 @@ shinyServer(function(input,output) {
     add_rule2cha=lapply(res1$addtl_info_parking_rule,as.character,stringsAsFactors=FALSE)
     result2=lapply(add_rule2cha,function(x) {ifelse(grepl('Metered',x),2,0)})
     ####################################################
-    ##  0 for free, 1 for No parking, 2 for Mettered  ##
+    ##  0 for free, 1 for No parking, 2 for Metered  ##
     ####################################################
     street_level=c()
     for(i in 1:376) {
@@ -80,13 +81,15 @@ shinyServer(function(input,output) {
     nyc()
   })
   output$block_map<-renderLeaflet({
-    if(input$show=="police office"){
+    if(input$show=="Government Office"){
       block()%>%addMarkers(-73.941098,40.800833,icon=policeIcon())%>%
         addMarkers(-73.936403,40.803321,icon=fireIcon())
-    } else if(input$show=="business parking lot"){
+    } else if(input$show=="Business Parking Lot"){
       block()%>%addMarkers(data=business,~lng,~lat,icon=parkingIcon(),popup=~as.character(price))
     }
-    
+  })
+  output$street<-renderGoogle_map({
+    google_map(key="AIzaSyBEwCy_6d2PImTjhBUEl8gT8ChiFJfzF1c",location=c(40.803321,-73.936403),zoom=16,search_box=T)
   })
   output$ticket<-renderDataTable({
     number()

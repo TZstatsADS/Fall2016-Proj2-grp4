@@ -6,6 +6,7 @@ library(magrittr)
 library(sp)
 library(jsonlite)
 library(openxlsx)
+library(googleway)
 
 shinyUI(navbarPage("Better Parking",theme="bootstrap_theme_02.css",
                    tabPanel("Introduction",
@@ -34,10 +35,12 @@ shinyUI(navbarPage("Better Parking",theme="bootstrap_theme_02.css",
                          radioButtons("show","Select What to Show on Map",c("Government Office","Business Parking Lot"))
                        ),
                        mainPanel(
-                         tabsetPanel(type="pill",position="right",
+                         tabsetPanel(type="pill",
                                      tabPanel("map",
-                                              leafletOutput("block_map",height=500)),
-                                     tabPanel("street view"
+                                              leafletOutput("block_map",height=500)
+                                              ),
+                                     tabPanel("street view",
+                                              google_mapOutput("street",height=500)
                                               )
                            
                          )
