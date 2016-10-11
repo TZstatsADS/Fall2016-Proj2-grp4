@@ -22,16 +22,16 @@ def Ticket_check(plate_number):
         for i in range(col_length):
             driver.find_elements_by_class_name('expander-icon')[i].click()
         item_length = len(driver.find_elements_by_class_name('violation-title'))
-        violation_df = pd.DataFrame(columns = ['number','des','value','time'])
+        violation_df = pd.DataFrame(columns = ['Summon_Number','Description','Penalty','Issue_time'])
         for i in range(item_length):
             violation_number = dict()
-            violation_number['number'] = driver.find_elements_by_xpath('//div/ul/li/span[contains(text(),"Violation #: ")]/following-sibling::span[@class="violation-details-single-value1"]')[i].text
-            violation_number['des'] = driver.find_elements_by_class_name('violation-title')[i].text.split(':')[0]
-            violation_number['value'] = driver.find_elements_by_class_name('violation-value')[i].text
-            violation_number['time'] = driver.find_elements_by_xpath('//div/ul/li/span[contains(text(),"/")]')[i].text
+            violation_number['Summon_Number'] = driver.find_elements_by_xpath('//div/ul/li/span[contains(text(),"Violation #: ")]/following-sibling::span[@class="violation-details-single-value1"]')[i].text
+            violation_number['Description'] = driver.find_elements_by_class_name('violation-title')[i].text.split(':')[0]
+            violation_number['Penalty'] = driver.find_elements_by_class_name('violation-value')[i].text
+            violation_number['Issue_time'] = driver.find_elements_by_xpath('//div/ul/li/span[contains(text(),"/")]')[i].text
             violation_df = violation_df.append(violation_number,ignore_index=True)
         driver.close()
-        return(violation_df)
+        return(violation_df.to_dict(orient = "list"))
     
     except:
         driver.close()
