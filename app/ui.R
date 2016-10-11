@@ -1,6 +1,11 @@
 library(shiny)
 library(leaflet)
-library(RSelenium)
+library(rPython)
+library(rgdal)
+library(magrittr)
+library(sp)
+library(jsonlite)
+library(openxlsx)
 
 shinyUI(navbarPage("Better Parking",theme="bootstrap_theme_02.css",
                    tabPanel("Introduction",
@@ -22,13 +27,20 @@ shinyUI(navbarPage("Better Parking",theme="bootstrap_theme_02.css",
                      sidebarLayout(
                        sidebarPanel(
                          textInput("address","Enter the New York Address","2205 3rd AVE"),
-                         textInput("date","Enter the Date (YYYY/MM/DD)","2016/09/15"),
+                         textInput("date_sta","Enter the Date (YYYY/MM/DD)","2016/09/13"),
                          textInput("start","Enter the Start Time (HH:MM)","06:00"),
+                         textInput("date_end","Enter the Date (YYYY/MM/DD)","2016/09/13"),
                          textInput("end","Enter the End Time (HH:MM)","07:00"),
-                         radioButtons("show","Select What to Show on Map",c("police office","business parking lot"))
+                         radioButtons("show","Select What to Show on Map",c("Government Office","Business Parking Lot"))
                        ),
                        mainPanel(
-                         leafletOutput("block_map",height=500)
+                         tabsetPanel(type="pill",position="right",
+                                     tabPanel("map",
+                                              leafletOutput("block_map",height=500)),
+                                     tabPanel("street view"
+                                              )
+                           
+                         )
                        )
                      )
                    ),
@@ -36,8 +48,8 @@ shinyUI(navbarPage("Better Parking",theme="bootstrap_theme_02.css",
                      titlePanel(h2("Ticket Searching System")),
                      sidebarLayout(
                        sidebarPanel(
-                         textInput("plate_number","Enter the Plate ID","98255MB"),
-                         submitButton("Apply changes")
+                         textInput("plate_number","Enter the Plate ID"),
+                         actionButton("submit","Apply changes")
                        ),
                        mainPanel(
                          dataTableOutput("ticket")
