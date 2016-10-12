@@ -37,4 +37,4 @@ leaflet(data = dat.vio40) %>% #Data can be changed
                    color = "#eb6841", # Color can be changed 
                    #radius = ~sum, 
                    stroke= FALSE,
-                   fillOpacity = 0.8)
+                   fillOpacity = 0.8) 
