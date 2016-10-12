@@ -105,4 +105,3 @@ freq.streetname <- dat.pv.cp %>%
 freq.streetname <- freq.streetname %>% 
   mutate(Street.Name.cp = gsub("_", " ", Street.Name.cp))
 
-
