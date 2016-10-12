@@ -4,14 +4,14 @@
 Term: Fall 2016
 
 + Team # 4
-+ Project title: Better Parking
++ Project title: Parkman Go
 + Team members
 	+ team member 1 Yanjin Li
 	+ team member 2 Tian Sheng
 	+ team member 3 Pengfei Wang
 	+ team member 4 Qing Yin
 	
-+ Project summary: In this project, we are planning to develop an app for both parking lot developers and drivers in New York City. Our app is designed to have 3 functions: (1) parking violation situation checking, (2) parking lot status checking, (3) parking ticket searching. 
++ Project summary: In this project, we are planning to develop an app for both parking lot developers and drivers in New York City. Our app is designed to have 3 functions: (1) parking violation situation checking, (2) parking lot status checking, (3) parking ticket searching. "Parking violation situation checking" part is designed for parking lot developers. Observing the areas where there are more parking violations and further checking the parking violation reasons, developers can have ideas where they should develop a new parking lot. "Parking lot status checking" part is designed for drivers. Drivers can have a look at this part before they are going to park to avoid parking violation and get a better parking. "Parking ticket searching" part is also designed for drivers. Drivers can easily find whether they have tickets and how many tickets they have through using this part. In addition, we do some basic data analysis, such as the bar plot of violation distribution and the pie chart of violation type. Hope this app is helpful.
 
 In this second project of Applied Data Science, we will carry out *Exploratory Data Analysis and Visualization* via a shiny app on a topic about open data released from the [New York City open data portal](https://nycopendata.socrata.com/). See [Project 2 Description](doc/project2_desc.md) for more details.  
 
