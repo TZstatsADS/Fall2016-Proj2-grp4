@@ -76,8 +76,7 @@ datclean.pv <- readRDS("exported_data/datclean_pv.rds")
 # STEP 2 Drawing Map #############################################################################################  
 # Make a copy of the final location data 
 dat.pv <- datclean.pv
-
-
+# Test 1: general plain map
 overall.map <- leaflet() %>% setView(lng = -73.86869, lat = 40.75686, zoom = 10)
 overall.map %>% addTiles() %>%
   addProviderTiles("CartoDB.Positron") %>%
@@ -90,11 +89,7 @@ overall.map %>% addTiles() %>%
              popup = state_popup,
              clusterOptions = markerClusterOptions())
 
-
-
-
-
-# Map 2 
+# Test 2: Watercolor Version
 leaflet(data = dat.pv) %>% 
   setView(lng = -73.86869, lat = 40.75686, zoom = 10) %>% 
   addProviderTiles("Stamen.Watercolor") %>%
@@ -107,39 +102,15 @@ leaflet(data = dat.pv) %>%
 # Read the fire hydrant data 
 dat.firehyrant <- read.csv("original_data/Fire_Hydrants.csv") 
 dat.firehyrant <- dat.firehyrant %>% rename(X.Summons.Number = Summons.Number)
-
-
 dat.pv.fh <- dat.pv %>% filter(Violation.Code == 40)
 
-# TESTING 
+# Test 3: General Map with Icon defined 
 pal <- colorQuantile("YlGn", NULL, n = 5)
-
-state_popup <- paste0("<strong>Estado: </strong>", 
-                      dat.pv$Street.Name, 
-                      "<br><strong>PIB per c?pita, miles de pesos, 2008: </strong>", 
-                      dat.pv$Plate.ID)
 
 Icons <- iconList(
   fire = makeIcon("/Users/yanjin1993/Google Drive/Columbia University /2016 Fall /Applied Data Science /Project_002/fair_hydrant.jpg",
                   18, 18))
 dat.pv.fh <- dat.pv.fh %>% mutate(type = "fire")
-
-
-
-
-leaflet(data = dat.pv) %>%
-  setView(lat= 40.7589, lng = -73.9851, zoom = 12)%>%
-  #addProviderTiles("CartoDB.Positron") %>%
-  addProviderTiles("Stamen.Toner") %>%
-  addProviderTiles("Stamen.TonerLabels") %>%
-  addMarkers(lng = as.numeric(dat.pv$lng),
-             lat = as.numeric(dat.pv$lat),
-             popup = state_popup,
-             clusterOptions = markerClusterOptions())
-
-
-
-
 # Fire hydrant map 002 
 leaflet(data = dat.pv.fh[1:50,]) %>%
   setView(lat=40.69196, lng = -73.96483, zoom = 10)%>%
@@ -162,44 +133,20 @@ greenLeafIcon <- makeIcon(
   iconWidth = 15, iconHeight = 15,
   iconAnchorX = 1, iconAnchorY = 1)
 
+# Test 4: First page map
 
-# Maps by violation codes
-mon<-switch(input$date,
-            "Park Near Stores"= 36,
-            "Park Without Current Inspection Sticker"=71,
-            "Double Parking"=46,
-            "Parking Time Exceeds"=37,
-            "Park Near Fire Hydrant"=40)
+state_popup <- paste0("<strong>Street Name: </strong>", 
+                      dat.pv$Street.Name, 
+                      "<br><strong>Plate ID: </strong>", 
+                      dat.pv$Plate.ID)
 
-GetViocodeData <- function(violation.code) {
-  dat.pv.viocode <- dat.pv %>% filter(Violation.Code == violation.code) %>% # Switch code input 
-    mutate(lng = substr(lng, 1, 7), lat = substr(lat, 1, 6), coor = paste0(lng, ",", lat)) %>%
-    group_by(coor) %>%
-    summarise(sum = n()) %>%
-    mutate(lng = as.numeric(substr(coor, 1, 7)), lat = as.numeric(substr(coor, 9, 14))) %>%
-    filter(!is.na(lat))
-  return(dat.pv.viocode)
-}
-
-# Make data frames 
-dat.vio40 <- GetViocodeData(40)
-dat.vio36 <- GetViocodeData(36)
-dat.vio71 <- GetViocodeData(71)
-dat.vio46 <- GetViocodeData(46)
-dat.vio37 <- GetViocodeData(37)
-
-# Color List
-color.list <- c("#edc951", "#eb6841", "#cc2a36", "#4f372d", "#00a0b0")
-
-leaflet(data = dat.vio40) %>% #Data can be changed
+leaflet(data = dat.pv) %>%
   setView(lat= 40.7589, lng = -73.9851, zoom = 12)%>%
-  addProviderTiles("CartoDB.Positron") %>%
+  #addProviderTiles("CartoDB.Positron") %>%
   addProviderTiles("Stamen.Toner") %>%
-  addProviderTiles("Stamen.TonerLabels") %>% 
-  addCircleMarkers(lng = ~lng,
-                 lat = ~lat,
-                 radius = 3,
-                 color = "#eb6841", # Color can be changed 
-                 #radius = ~sum, 
-                 stroke= FALSE,
-                 fillOpacity = 0.8)
+  addProviderTiles("Stamen.TonerLabels") %>%
+  addMarkers(lng = as.numeric(dat.pv$lng),
+             lat = as.numeric(dat.pv$lat),
+             popup = state_popup,
+             clusterOptions = markerClusterOptions())
+
