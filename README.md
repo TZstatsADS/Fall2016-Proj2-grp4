@@ -3,7 +3,8 @@
 
 Term: Fall 2016
 
-Project link: <a href="https://pfwang.shinyapps.io/app1/" target="_blank">https://pfwang.shinyapps.io/app1/</a>
+Project link: <a href="https://pfwang.shinyapps.io/app1/" target="_blank">https://pfwang.shinyapps.io/app1/</a> 
+( For mac users, please use Safari to open the link, which would ensure the completeness of map. )
 
 
 + Team # 4
