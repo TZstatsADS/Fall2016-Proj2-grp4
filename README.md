@@ -19,11 +19,11 @@ In this second project of Applied Data Science, we will carry out *Exploratory D
 + **After your finish your shiny app, please replace the screenshot below with one from your own app.**
 ```
 
-![screenshot](doc/2016-10-11 00.jpg)
+![screenshot](doc/2016-10-11 00.png)
 
-![screenshot](doc/2016-10-11 01.jpg)
+![screenshot](doc/2016-10-11 01.png)
 
-![screenshot](doc/2016-10-11 02.jpg)
+![screenshot](doc/2016-10-11 02.png)
 
 The **learning goals** for this project is 
 - business intelligence for data science
