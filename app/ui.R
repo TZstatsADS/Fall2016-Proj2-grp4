@@ -1,31 +1,39 @@
 library(shiny)
-library(maps)
-library(mapproj) 
 library(leaflet)
-library(rPython)
 library(rgdal)
 library(magrittr)
-library(ggplot2)
 library(sp)
 library(jsonlite)
 library(openxlsx)
 library(googleway)
+library(maps)
+library(mapproj)
+library(ggplot2)
+library(plotly)
+library(RColorBrewer)
+library(car)
+library(dplyr)
+library(rPython)
 
-# Define UI for application that draws 4 pages
-shinyUI(navbarPage(id="navbar",title="Parkman Go",
-                   theme="black.css",
+shinyUI(navbarPage("Parkman Go",theme="bootstrap_theme_01.css",
                    tabPanel("Introduction",
-                            titlePanel(h2("Introduction")),
-                            mainPanel(tabPanel("Introduction",includeMarkdown("introduction.md")))),
+                     titlePanel(h2("Introduction")),
+                     mainPanel(tabPanel("Introduction",
+                                        includeMarkdown("introduction.md")
+                               )
+                     )
+                   ),
                    tabPanel("NYC Map",
-                            div(class="outer"),
-                            leafletOutput("nyc_map",height=500),
-                            leafletOutput("violation_map",height=500),
-                            absolutePanel(id="controls",class="panel panel-default",
-                                          fixed = TRUE, draggable = TRUE, top = 60, left = "auto",
-                                          right = 20, bottom = "auto", width = 330, height = "auto",h4("Violation Type"),
-                            selectInput("type",label = "Choose a violation type to display",choices = c("Park Near Stores","Park Without Current Inspection Sticker",
-                           "Double Parking","Parking Time Exceeds","Park Near Fire Hydrant"),selected = "Park Near Stores"))),
+                     leafletOutput("nyc_map",height=600),
+                     absolutePanel(fixed=TRUE,draggable=TRUE,
+                                   top=60,left="auto",right=20,bottom="auto",
+                                   width=330,height="auto",
+                                   h4("Violation Type"),
+                                   selectInput("vio_type",label="Choose a Violation Type to Display",
+                                               choices=c("ALL","Park Near Stores","Park Without Current Inspection Sticker",
+                                                         "Double Parking","Parking Time Exceeds","Park Near Fire Hydrant"))
+                     )
+                   ),
                    tabPanel("Block Map",
                      titlePanel(h2("Parking Area Analysis")),
                      sidebarLayout(
@@ -64,32 +72,33 @@ shinyUI(navbarPage(id="navbar",title="Parkman Go",
                    ),
                    tabPanel("Statistics",
                             titlePanel(h2("Data Analysis")),
-                            sidebarLayout(position="right",
-                                          sidebarPanel(
-                                            conditionalPanel(condition="input.ccpanel==1",
-                                                             helpText("First graph:bar chart for Timeline distribution."),
-                                                             helpText("Second graph: Pie chart for categories based on the Top 10 with the most counts."),
-                                                             helpText("Third graph: Histogram for violation fee comparation.") ),
-                                            selectInput("date1", 
-                                                        label = "Choose a month to display",
-                                                        choices = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"),
-                                                        selected="Jan"
-                                            )), 
-                                          mainPanel(tabsetPanel(
-                                            tabPanel("Barchart",br(),tags$div(class="descrip_text", 
-                                                                              textOutput("Bar_text")), br(),
-                                                     plotOutput("ggBarPlotA",height="600px"),value=1),
-
-                                            tabPanel("Piechart",br(),tags$div(class="descrip_text",
-                                                                              textOutput("Pie_text")), br(),
-                                                     plotlyOutput("ggPiePlot",height="600px"),value=1)
-                                          )))),
+                            tabsetPanel(
+                              tabPanel("Barchart",
+                                       titlePanel(h3("Bar Chart")),
+                                       sidebarLayout(
+                                         sidebarPanel(
+                                           selectInput("park_month", 
+                                                       label="Choose a Month to Display",
+                                                       choices=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec")
+                                           )
+                                         ),
+                                         mainPanel(
+                                           plotOutput("ggBarPlotA",height="600px")
+                                         )
+                                       )
+                              ),
+                              tabPanel("Piechart",
+                                       titlePanel(h3("Pie Chart")),
+                                       plotlyOutput("ggPiePlot",height="600px"))
+                            )
+                   ),
                    tabPanel("Reference and Contact",
                      navlistPanel("Reference and Contact",
                                   tabPanel("Reference"
                                            
                                   ),
-                                  tabPanel("Contact"
+                                  tabPanel("Contact",
+                                           includeMarkdown("contact.md")
                                            
                                   )
                        
