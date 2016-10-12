@@ -19,7 +19,7 @@ In this second project of Applied Data Science, we will carry out *Exploratory D
 + **After your finish your shiny app, please replace the screenshot below with one from your own app.**
 ```
 
-![screenshot](doc/2016-10-11 00.png)
+![screenshot](doc/cover_pics/Screen Shot 2016-10-12 at 10.29.26 AM.png)
 
 ![screenshot](doc/2016-10-11 01.png)
 
