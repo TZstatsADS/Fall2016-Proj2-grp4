@@ -14,6 +14,8 @@ Project link: <a href="https://pfwang.shinyapps.io/app1/" target="_blank">https:
 	+ team member 2 Tian Sheng
 	+ team member 3 Pengfei Wang
 	+ team member 4 Qing Yin
+
++ The website link: https://pfwang.shinyapps.io/app1/
 	
 + Project summary: In this project, we are planning to develop an app for both parking lot developers and drivers in New York City. Our app is designed to have 3 functions: (1) parking violation situation checking, (2) parking lot status checking, (3) parking ticket searching. "Parking violation situation checking" part is designed for parking lot developers. Observing the areas where there are more parking violations and further checking the parking violation reasons, developers can have ideas where they should develop a new parking lot. "Parking lot status checking" part is designed for drivers. Drivers can have a look at this part before they are going to park to avoid parking violation and get a better parking. "Parking ticket searching" part is also designed for drivers. Drivers can easily find whether they have tickets and how many tickets they have through using this part. In addition, we do some basic data analysis, such as the bar plot of violation distribution and the pie chart of violation type. Hope this app is helpful.
 
