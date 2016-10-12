@@ -11,7 +11,7 @@ Term: Fall 2016
 	+ team member 3 Pengfei Wang
 	+ team member 4 Qing Yin
 	
-+ Project summary: In this project, we are planning to develop an app for both parking lot developers and drivers in New York City. Our app is designed to have 3 functions: (1) parking violation situation checking, (2) parking lot status checking, (3) parking ticket searching.
++ Project summary: In this project, we are planning to develop an app for both parking lot developers and drivers in New York City. Our app is designed to have 3 functions: (1) parking violation situation checking, (2) parking lot status checking, (3) parking ticket searching. 
 
 In this second project of Applied Data Science, we will carry out *Exploratory Data Analysis and Visualization* via a shiny app on a topic about open data released from the [New York City open data portal](https://nycopendata.socrata.com/). See [Project 2 Description](doc/project2_desc.md) for more details.  
 
@@ -19,7 +19,11 @@ In this second project of Applied Data Science, we will carry out *Exploratory D
 + **After your finish your shiny app, please replace the screenshot below with one from your own app.**
 ```
 
-![screenshot](doc/screenshot.jpg)
+![screenshot](doc/2016-10-11 00.jpg)
+
+![screenshot](doc/2016-10-11 01.jpg)
+
+![screenshot](doc/2016-10-11 02.jpg)
 
 The **learning goals** for this project is 
 - business intelligence for data science
