@@ -45,7 +45,7 @@ shinyServer(function(input,output) {
     pal=palette(c('#00FF00','#FF0000','#808080'))
     res1$addtl_info_next_period_parking_rule=as.list(street_level)
     pal<-colorBin(
-      palette=c('#00FF00','#FF0000','#808080'),street_level,3
+      palette=c('#83d0c9','#ff084a','#fdcf58'),street_level,3
     )
     block_map<-leaflet()%>%
       addTiles(urlTemplate = "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3dhbGtlcnRjdSIsImEiOiJjaW9jenN1OGwwNGZsdjRrcWZnazh2OXVxIn0.QJrmnV9lJzdXHkH95ERdjw",attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>')%>%

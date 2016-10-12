@@ -40,8 +40,8 @@ shinyUI(navbarPage("Parkman Go",theme="black.css",
                        sidebarPanel(
                          textInput("address","Enter the New York Address","2205 3rd AVE"),
                          textInput("date_sta","Enter the Date (YYYY/MM/DD)","2016/09/13"),
-                         textInput("start","Enter the Start Time (HH:MM)","06:00"),
-                         textInput("date_end","Enter the Date (YYYY/MM/DD)","2016/09/13"),
+                         textInput("start","Enter the Start Time (HH:MM)","20:00"),
+                         textInput("date_end","Enter the Date (YYYY/MM/DD)","2016/09/15"),
                          textInput("end","Enter the End Time (HH:MM)","07:00"),
                          radioButtons("show","Select What to Show on Map",c("Government Office","Business Parking Lot"))
                        ),
