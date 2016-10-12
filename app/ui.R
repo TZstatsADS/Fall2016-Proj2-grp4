@@ -15,7 +15,7 @@ library(car)
 library(dplyr)
 library(rPython)
 
-shinyUI(navbarPage("Parkman Go",theme="bootstrap_theme_01.css",
+shinyUI(navbarPage("Parkman Go",theme="black.css",
                    tabPanel("Introduction",
                      titlePanel(h2("Introduction")),
                      mainPanel(tabPanel("Introduction",
