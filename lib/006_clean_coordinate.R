@@ -1,22 +1,22 @@
 setwd("G:/Columbia/STAT GR5243/project02")
 b<-readRDS("nyc_street_coordinate.rds")
 library(dplyr)
-# ÕâÒ»²½ÊÇÏÈ°ÑÊı¾İ¼¯°´type·Ö¿ª£¬·ÖÎªLineStringºÍMultiLineString
+# è¿™ä¸€æ­¥æ˜¯å…ˆæŠŠæ•°æ®é›†æŒ‰typeåˆ†å¼€ï¼Œåˆ†ä¸ºLineStringå’ŒMultiLineString
 c<-b%>%filter(b$type=="LineString")
 d<-b%>%filter(b$type=="MultiLineString")
 library(leaflet)
 library(rgdal)
 map<-leaflet()%>%setView(lng=-73.90,lat=40.75,zoom=11)%>%addTiles()
 map
-# ÕâÒ»²½ÊÇÊ¹ÓÃLineStringÀïµÄcoordinate¿ÉÒÔÖ±½Ó»­£¬¾ßÌå»­·¨ÈçÏÂ
+# è¿™ä¸€æ­¥æ˜¯ä½¿ç”¨LineStringé‡Œçš„coordinateå¯ä»¥ç›´æ¥ç”»ï¼Œå…·ä½“ç”»æ³•å¦‚ä¸‹
 for(i in 1:17627){
   map<-map%>%addPolylines(data=Line(c$coordinates[i][[1]]))
 }
 map
 map1<-leaflet()%>%setView(lng=-73.90,lat=40.75,zoom=11)%>%addTiles()
 map1
-# ÕâÒ»²½ÊÇĞèÒª½«MultiLineStringÀïµÄcoordinateÈ«²¿×ª»¯ÎªºÍLineStringÀïµÄcoordinateÒ»¸öĞÎÊ½
-# ×ª»¯ºóµÄcoordinateÈ«²¿´æÔÚÁËcoordinates.newÀï
+# è¿™ä¸€æ­¥æ˜¯éœ€è¦å°†MultiLineStringé‡Œçš„coordinateå…¨éƒ¨è½¬åŒ–ä¸ºå’ŒLineStringé‡Œçš„coordinateä¸€ä¸ªå½¢å¼
+# è½¬åŒ–åçš„coordinateå…¨éƒ¨å­˜åœ¨äº†coordinates.newé‡Œ
 check<-vector()
 for(i in 1:242){
   check[i]<-length(d$coordinates[i])
@@ -36,13 +36,13 @@ for(i in 1:242){
                                    d$coordinates[i][[1]][((length(d$coordinates[i][[1]])/2)+1):(length(d$coordinates[i][[1]]))]))
   }
 }
-# ÕâÒ»²½ÊÇ»­coordinates.newÀïµÄÏß
+# è¿™ä¸€æ­¥æ˜¯ç”»coordinates.newé‡Œçš„çº¿
 for(i in 1:242){
   map1<-map1%>%addPolylines(data=Line(coordinates.new[i][[1]]))
 }
 map1
-# ×¢Òâ£ºÎÒÊÇ·ÖÁ½¸öµØÍ¼»­µÄ£¬×îºóĞèÒªÕûºÏµ½Ò»Æğ
-# ÕûºÏºóµÄÊı¾İ¼¯ÈçÏÂ
+# æ³¨æ„ï¼šæˆ‘æ˜¯åˆ†ä¸¤ä¸ªåœ°å›¾ç”»çš„ï¼Œæœ€åéœ€è¦æ•´åˆåˆ°ä¸€èµ·
+# æ•´åˆåçš„æ•°æ®é›†å¦‚ä¸‹
 d<-d[1:4]
 d[5]<-vector()
 for(i in 1:242){
@@ -52,7 +52,7 @@ d<-d[c(1,2,3,5)]
 colnames(d)[4]<-"coordinates"
 e<-rbind(d[1:4],c[1:4])
 saveRDS(e,"nyc_street_coordinate_new.rds")
-# ºÏ²¢ÎªÒ»¸öÊı¾İ¼¯ºó¿ÉÒÔÖ±½ÓÓÃÒÔÏÂcode»­
+# åˆå¹¶ä¸ºä¸€ä¸ªæ•°æ®é›†åå¯ä»¥ç›´æ¥ç”¨ä»¥ä¸‹codeç”»
 map2<-leaflet()%>%setView(lng=-73.90,lat=40.75,zoom=11)%>%addTiles()
 map2
 for(i in 1:17869){
