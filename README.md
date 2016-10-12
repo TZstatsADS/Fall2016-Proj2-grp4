@@ -21,9 +21,11 @@ In this second project of Applied Data Science, we will carry out *Exploratory D
 
 ![screenshot](doc/cover_pics/Screen Shot 2016-10-12 at 10.29.26 AM.png)
 
-![screenshot](doc/2016-10-11 01.png)
+![screenshot](doc/cover_pics/Screen Shot 2016-10-12 at 12.05.35 PM.png)
 
-![screenshot](doc/2016-10-11 02.png)
+![screenshot](doc/cover_pics/Screen Shot 2016-10-12 at 10.55.11 AM.png)
+
+![screenshot](doc/cover_pics/132.pic_hd.jpg)
 
 The **learning goals** for this project is 
 - business intelligence for data science
