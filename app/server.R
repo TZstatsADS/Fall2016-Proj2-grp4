@@ -19,6 +19,7 @@ res1<-readOGR(dsn='pre_instance.geojson',layer="OGRGeoJSON")
 business<-read.xlsx("business_parking_lot.xlsx")
 parking1<-readRDS("timeline.rds")
 datpv<-readRDS("datclean_pv.rds")
+parking2<-as.data.frame(read.csv("pie_data.csv"))
 
 shinyServer(function(input,output) {
   nyc<-reactive({
