@@ -92,11 +92,8 @@ shinyUI(navbarPage("Parkman Go",theme="black.css",
                                        plotlyOutput("ggPiePlot",height="600px"))
                             )
                    ),
-                   tabPanel("Reference and Contact",
-                     navlistPanel("Reference and Contact",
-                                  tabPanel("Reference"
-                                           
-                                  ),
+                   tabPanel("Contact",
+                     navlistPanel("Contact",
                                   tabPanel("Contact",
                                            includeMarkdown("contact.md")
                                            

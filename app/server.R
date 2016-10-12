@@ -170,4 +170,8 @@ shinyServer(function(input,output) {
             panel.background=element_rect(fill="black"),
             plot.background=element_rect(fill="black",colour="black",size=2,linetype="longdash"))
   })
+  output$ggPiePlot<-renderPlotly({
+    plot_ly(parking2,labels=parking2$label,values=parking2$score,hole=0.5,type="pie")%>%
+      layout(title="Donut Chart of Violation Type",xaxis=list(title=NULL,showgrid=F),yaxis=list(title=NULL,showgrid=F),plot_bgcolor='rgba(0,0,0,1)')
+  })
 })
