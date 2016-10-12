@@ -32,4 +32,3 @@ dat.nyc.street <- cbind(datclean.nycst, dat.rows)
 
 # Save to local 
 saveRDS(dat.nyc.street, "exported_data/nyc_street_coordinate.rds")
-
