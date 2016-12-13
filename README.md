@@ -21,9 +21,7 @@ Project link: <a href="https://pfwang.shinyapps.io/app1/" target="_blank">https:
 
 In this second project of Applied Data Science, we will carry out *Exploratory Data Analysis and Visualization* via a shiny app on a topic about open data released from the [New York City open data portal](https://nycopendata.socrata.com/). See [Project 2 Description](doc/project2_desc.md) for more details.  
 
-```diff
-+ **After your finish your shiny app, please replace the screenshot below with one from your own app.**
-```
+License: All code is distributed under the Apache License V2.0. More information can be found here at http://www.apache.org/licenses/ and in the accompanying License file.
 
 ![screenshot](doc/cover_pics/Screen Shot 2016-10-12 at 10.29.26 AM.png)
 
